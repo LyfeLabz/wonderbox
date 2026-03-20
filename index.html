@@ -1268,6 +1268,13 @@ initStars();
 requestAnimationFrame(loop);
 window.addEventListener('resize', () => { resize(); initStars(); });
 
+/* ===== HOTKEY: Cmd+Shift+/ → lyfelabz.com ===== */
+window.addEventListener('keydown', e => {
+  if (e.metaKey && e.shiftKey && e.key === '/') {
+    window.location.href = 'https://lyfelabz.com';
+  }
+});
+
 /* ===== TYPEWRITER ===== */
 const questions = [
   "If the universe started from nothing... what was the nothing?",
