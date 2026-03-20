@@ -1268,9 +1268,9 @@ initStars();
 requestAnimationFrame(loop);
 window.addEventListener('resize', () => { resize(); initStars(); });
 
-/* ===== HOTKEY: Cmd+Shift+/ → lyfelabz.com ===== */
+/* ===== HOTKEY: Cmd+Ctrl+/ → lyfelabz.com ===== */
 window.addEventListener('keydown', e => {
-  if (e.metaKey && e.shiftKey && e.key === '/') {
+  if (e.metaKey && e.ctrlKey && e.key === '/') {
     window.location.href = 'https://lyfelabz.com';
   }
 });
