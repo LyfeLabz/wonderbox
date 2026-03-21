@@ -629,9 +629,27 @@ section {
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect x='40' y='40' width='48' height='52' fill='none' stroke='%23ff6b35' stroke-opacity='0.6' stroke-width='1' rx='2'/%3E%3Crect x='96' y='40' width='48' height='52' fill='none' stroke='%23ff6b35' stroke-opacity='0.4' stroke-width='1' rx='2'/%3E%3Crect x='152' y='40' width='48' height='52' fill='none' stroke='%23ff6b35' stroke-opacity='0.3' stroke-width='1' rx='2'/%3E%3Crect x='40' y='100' width='48' height='52' fill='none' stroke='%2300d9ff' stroke-opacity='0.5' stroke-width='1' rx='2'/%3E%3Crect x='96' y='100' width='48' height='52' fill='none' stroke='%2300d9ff' stroke-opacity='0.35' stroke-width='1' rx='2'/%3E%3Crect x='152' y='100' width='48' height='52' fill='none' stroke='%2300d9ff' stroke-opacity='0.25' stroke-width='1' rx='2'/%3E%3Crect x='240' y='40' width='48' height='112' fill='none' stroke='%23a8ff3e' stroke-opacity='0.5' stroke-width='1' rx='2'/%3E%3Crect x='300' y='40' width='52' height='112' fill='none' stroke='%23ff3ea8' stroke-opacity='0.6' stroke-width='1' rx='2'/%3E%3Ctext x='64' y='72' font-family='monospace' font-size='14' fill='%23ff6b35' opacity='0.8' text-anchor='middle'%3Eu%3C/text%3E%3Ctext x='120' y='72' font-family='monospace' font-size='14' fill='%23ff6b35' opacity='0.5' text-anchor='middle'%3Ec%3C/text%3E%3Ctext x='176' y='72' font-family='monospace' font-size='14' fill='%23ff6b35' opacity='0.35' text-anchor='middle'%3Et%3C/text%3E%3Ctext x='264' y='100' font-family='monospace' font-size='16' fill='%23a8ff3e' opacity='0.7' text-anchor='middle'%3E%CE%B3%3C/text%3E%3Ctext x='326' y='100' font-family='monospace' font-size='16' fill='%23ff3ea8' opacity='0.8' text-anchor='middle'%3EH%E2%81%B0%3C/text%3E%3C/svg%3E") center/cover;
 }
 
-@keyframes thumbPulse {
-  0%,100% { opacity: 0.7; }
-  50%      { opacity: 1; }
+.exp-card.purple:hover {
+  box-shadow: 0 20px 60px rgba(192,132,252,0.14), 0 0 0 1px rgba(192,132,252,0.28);
+}
+
+/* Dark Universe thumb */
+.thumb-du {
+  background: radial-gradient(ellipse at 50% 55%, rgba(192,132,252,0.22) 0%, rgba(249,115,22,0.12) 45%, rgba(2,4,8,1) 100%);
+}
+
+.thumb-du::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Cdefs%3E%3CradialGradient id='dg' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23c084fc' stop-opacity='0.5'/%3E%3Cstop offset='100%25' stop-color='%23c084fc' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='200' cy='100' r='70' fill='url(%23dg)' opacity='0.6'/%3E%3Ccircle cx='200' cy='100' r='48' fill='none' stroke='%23c084fc' stroke-opacity='0.35' stroke-width='1'/%3E%3Ccircle cx='200' cy='100' r='28' fill='none' stroke='%23c084fc' stroke-opacity='0.55' stroke-width='1'/%3E%3Ccircle cx='200' cy='100' r='6' fill='%23ffffff' opacity='0.9'/%3E%3Cline x1='200' y1='100' x2='310' y2='60' stroke='%23f43f5e' stroke-opacity='0.55' stroke-width='1.2'/%3E%3Cpolygon points='310,60 303,65 307,55' fill='%23f43f5e' opacity='0.55'/%3E%3Cline x1='200' y1='100' x2='90' y2='148' stroke='%23f43f5e' stroke-opacity='0.4' stroke-width='1.2'/%3E%3Cpolygon points='90,148 97,143 93,153' fill='%23f43f5e' opacity='0.4'/%3E%3Ccircle cx='148' cy='76' r='5' fill='%234ade80' opacity='0.8'/%3E%3Ccircle cx='265' cy='130' r='4' fill='%234ade80' opacity='0.6'/%3E%3Ccircle cx='310' cy='80' r='3' fill='%234ade80' opacity='0.5'/%3E%3C/svg%3E") center/cover;
+  animation: thumbPulse 5s ease-in-out infinite;
+}
+
+.purple .exp-card-thumb-label {
+  background: rgba(192,132,252,0.1);
+  border: 1px solid rgba(192,132,252,0.28);
+  color: #c084fc;
 }
 
 .exp-card-thumb-label {
@@ -664,17 +682,19 @@ section {
 
 .exp-card-tag {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.55rem;
+  font-size: 0.62rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 8px;
+  color: rgba(180,210,240,0.75);
 }
 
-.gold .exp-card-tag { color: rgba(201,168,76,0.65); }
-.blue .exp-card-tag { color: rgba(0,217,255,0.65); }
+.gold .exp-card-tag { color: rgba(201,168,76,0.8); }
+.blue .exp-card-tag { color: rgba(0,217,255,0.8); }
+.purple .exp-card-tag { color: rgba(192,132,252,0.8); }
 
 .exp-card-tag::before {
   content: '';
@@ -683,20 +703,22 @@ section {
 }
 .gold .exp-card-tag::before { background: rgba(201,168,76,0.5); }
 .blue .exp-card-tag::before { background: rgba(0,217,255,0.5); }
+.purple .exp-card-tag::before { background: rgba(192,132,252,0.5); }
 
 .exp-card-title {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: 1.4rem;
+  font-size: 1.55rem;
   letter-spacing: -0.01em;
   margin-bottom: 12px;
-  line-height: 1.2;
+  line-height: 1.15;
+  color: #f0f4ff;
 }
 
 .exp-card-desc {
-  font-size: 0.9rem;
-  color: var(--muted);
-  line-height: 1.65;
+  font-size: 0.96rem;
+  color: rgba(200,220,245,0.8);
+  line-height: 1.68;
   margin-bottom: 20px;
 }
 
@@ -708,7 +730,7 @@ section {
 
 .meta-chip {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.52rem;
+  font-size: 0.58rem;
   letter-spacing: 0.12em;
   padding: 4px 10px;
   border-radius: 100px;
@@ -1139,22 +1161,22 @@ footer {
   <div class="explorations-inner">
     <div class="exp-cards">
 
-      <!-- Geometric Unity -->
-      <a href="geometric-unity.html" class="exp-card gold">
-        <div class="exp-card-thumb thumb-gu">
-          <div class="exp-card-thumb-label">3D INTERACTIVE</div>
+      <!-- Dark Universe -->
+      <a href="dark-universe.html" class="exp-card purple">
+        <div class="exp-card-thumb thumb-du">
+          <div class="exp-card-thumb-label">INTERACTIVE · TOGGLES</div>
         </div>
         <div class="exp-card-body">
-          <div class="exp-card-tag">THEORETICAL PHYSICS · BEYOND THE STANDARD MODEL</div>
-          <h3 class="exp-card-title">Geometric Unity</h3>
+          <div class="exp-card-tag">COSMOLOGY · DARK MATTER · DARK ENERGY</div>
+          <h3 class="exp-card-title">The Dark Universe</h3>
           <p class="exp-card-desc">
-            What if every force in the universe — gravity, electromagnetism, even the nuclear forces — came from the shape of one giant 14-dimensional space? Eric Weinstein's Geometric Unity theory says maybe. Fly through the Observerse and see what that actually looks like.
+            95% of the universe is invisible — no light, no signal, nothing we can detect directly. Dark matter holds galaxies together. Dark energy tears everything apart. Toggle each layer on and off to see what we can and can't explain.
           </p>
           <div class="exp-card-meta">
-            <span class="meta-chip chip-dim">14 Dimensions</span>
-            <span class="meta-chip chip-amber">Torus Knot Manifold</span>
-            <span class="meta-chip chip-dim">Gauge Fields</span>
-            <span class="meta-chip chip-teal">Live 3D</span>
+            <span class="meta-chip chip-dim">95% Unseen</span>
+            <span class="meta-chip" style="background:rgba(192,132,252,0.06);border:1px solid rgba(192,132,252,0.2);color:#c084fc;">Dark Matter</span>
+            <span class="meta-chip" style="background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.2);color:#fb923c;">Dark Energy</span>
+            <span class="meta-chip chip-dim">Cosmic Web</span>
           </div>
         </div>
         <div class="exp-card-arrow">↗</div>
@@ -1176,6 +1198,27 @@ footer {
             <span class="meta-chip chip-teal">4 Forces</span>
             <span class="meta-chip chip-dim">3 Generations</span>
             <span class="meta-chip chip-dim">Hover Tooltips</span>
+          </div>
+        </div>
+        <div class="exp-card-arrow">↗</div>
+      </a>
+
+      <!-- Geometric Unity -->
+      <a href="geometric-unity.html" class="exp-card gold">
+        <div class="exp-card-thumb thumb-gu">
+          <div class="exp-card-thumb-label">3D INTERACTIVE</div>
+        </div>
+        <div class="exp-card-body">
+          <div class="exp-card-tag">THEORETICAL PHYSICS · BEYOND THE STANDARD MODEL</div>
+          <h3 class="exp-card-title">Geometric Unity</h3>
+          <p class="exp-card-desc">
+            What if every force in the universe — gravity, electromagnetism, even the nuclear forces — came from the shape of one giant 14-dimensional space? Eric Weinstein's Geometric Unity theory says maybe. Fly through the Observerse and see what that actually looks like.
+          </p>
+          <div class="exp-card-meta">
+            <span class="meta-chip chip-dim">14 Dimensions</span>
+            <span class="meta-chip chip-amber">Torus Knot Manifold</span>
+            <span class="meta-chip chip-dim">Gauge Fields</span>
+            <span class="meta-chip chip-teal">Live 3D</span>
           </div>
         </div>
         <div class="exp-card-arrow">↗</div>
