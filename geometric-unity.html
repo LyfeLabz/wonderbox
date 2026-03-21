@@ -61,14 +61,15 @@
   }
 
   :root {
-    --gold: #c9a84c;
-    --gold-light: #f0d080;
-    --void: #020408;
-    --dim: #0a0f1a;
-    --cyan: #00e5ff;
-    --violet: #7b2fff;
-    --white: #e8eaf0;
-    --fiber: #ff6b9d;
+    --gold:      #e8b84b;
+    --gold-dim:  rgba(232,184,75,0.15);
+    --gold-glow: rgba(232,184,75,0.4);
+    --void:      #020408;
+    --white:     #f0f4ff;
+    --cyan:      #00e5ff;
+    --violet:    #a855f7;
+    --fiber:     #ff6b9d;
+    --spinor:    #4dffa0;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -85,7 +86,7 @@
 
   #canvas { position: fixed; inset: 0; z-index: 0; }
 
-  /* Header */
+  /* ===== HEADER ===== */
   #header {
     position: fixed;
     top: 64px; left: 0; right: 0;
@@ -99,108 +100,24 @@
 
   #title-block h1 {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 900;
     letter-spacing: 0.18em;
     color: var(--gold);
-    text-shadow: 0 0 40px rgba(201,168,76,0.5);
+    text-shadow: 0 0 40px var(--gold-glow);
     line-height: 1.1;
   }
 
   #title-block .subtitle {
-    font-size: 0.62rem;
+    font-size: 0.74rem;
     letter-spacing: 0.3em;
-    color: rgba(201,168,76,0.5);
+    color: rgba(232,184,75,0.82);
     margin-top: 4px;
     text-transform: uppercase;
+    text-shadow: 0 0 18px var(--gold-glow);
   }
 
-  /* Legend */
-  #legend {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .leg-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    opacity: 0.85;
-  }
-
-  .leg-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  /* Info panel */
-  #info {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    display: flex;
-    gap: 24px;
-    align-items: stretch;
-  }
-
-  .dim-card {
-    border: 1px solid rgba(201,168,76,0.2);
-    background: rgba(2,4,8,0.8);
-    backdrop-filter: blur(12px);
-    padding: 14px 22px;
-    min-width: 180px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .dim-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-  }
-
-  .dim-card .label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.55rem;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    opacity: 0.7;
-    margin-bottom: 4px;
-  }
-
-  .dim-card .value {
-    font-size: 1.6rem;
-    font-weight: 300;
-    line-height: 1;
-    margin-bottom: 2px;
-  }
-
-  .dim-card .desc {
-    font-size: 0.55rem;
-    letter-spacing: 0.1em;
-    opacity: 0.5;
-    line-height: 1.5;
-  }
-
-  .dim-card.blue .value { color: var(--cyan); }
-  .dim-card.purple .value { color: #b07fff; }
-  .dim-card.gold .value { color: var(--gold-light); }
-  .dim-card.pink .value { color: var(--fiber); }
-
-  /* Equation strip */
+  /* ===== EQUATION STRIP ===== */
   #equations {
     position: fixed;
     top: 144px;
@@ -208,25 +125,74 @@
     z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
+    width: 270px;
+  }
+
+  .eq-intro {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: rgba(200,220,255,0.55);
+    text-transform: uppercase;
+    margin-top: 18px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    padding-left: 10px;
+    border-left: 1px solid rgba(200,220,255,0.12);
+  }
+
+  .eq-intro strong {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(232,184,75,0.88);
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
   }
 
   .eq {
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-    color: rgba(200,220,255,0.4);
-    padding: 3px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 10px;
     border-left: 1px solid rgba(200,220,255,0.1);
+    margin-bottom: 4px;
     transition: all 0.3s;
   }
 
-  .eq.active {
-    color: var(--cyan);
-    border-left-color: var(--cyan);
-    text-shadow: 0 0 12px var(--cyan);
+  .eq-name {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(200,220,255,0.42);
+    transition: color 0.3s;
   }
 
-  /* Controls */
+  .eq-formula {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    color: rgba(200,220,255,0.62);
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+
+  .eq.active { border-left-color: var(--gold); }
+  .eq.active .eq-name   { color: rgba(232,184,75,0.72); }
+  .eq.active .eq-formula {
+    color: var(--gold);
+    text-shadow: 0 0 12px var(--gold-glow);
+  }
+
+  .eq-conclusion {
+    margin-top: 8px;
+    padding: 7px 10px;
+    border-left: 1px solid rgba(200,220,255,0.12);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: rgba(200,220,255,0.5);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* ===== CONTROLS — toggle switch style ===== */
   #controls {
     position: fixed;
     top: 144px;
@@ -234,71 +200,186 @@
     z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
+    width: 210px;
   }
 
-  .ctrl-btn {
-    background: rgba(201,168,76,0.07);
-    border: 1px solid rgba(201,168,76,0.25);
-    color: var(--gold);
-    font-family: 'Fira Code', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    padding: 7px 14px;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.2s;
-  }
-
-  .ctrl-btn:hover, .ctrl-btn.active {
-    background: rgba(201,168,76,0.18);
-    border-color: var(--gold);
-    box-shadow: 0 0 16px rgba(201,168,76,0.2);
-  }
-
-  /* Fiber count badge */
-  #fiber-badge {
-    position: fixed;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    z-index: 10;
-    writing-mode: vertical-rl;
-    font-size: 0.55rem;
-    letter-spacing: 0.25em;
-    color: rgba(255,107,157,0.4);
+  #controls-header {
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    color: rgba(200,220,255,0.55);
     text-transform: uppercase;
+    margin-bottom: 6px;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(200,220,255,0.1);
+    padding-bottom: 6px;
   }
 
-  /* Scanline overlay */
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 5px 0;
+    gap: 10px;
+    transition: opacity 0.2s;
+  }
+  .toggle-row:hover { opacity: 0.85; }
+
+  .toggle-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 99px;
+    padding: 4px 12px 4px 8px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    color: rgba(230,240,255,0.9);
+    white-space: nowrap;
+    flex: 1;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .toggle-row.active .toggle-pill {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  .toggle-pill-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tog-switch {
+    width: 34px; height: 18px;
+    border-radius: 99px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .toggle-row.active .tog-switch {
+    background: rgba(232,184,75,0.35);
+    border-color: rgba(232,184,75,0.65);
+    box-shadow: 0 0 10px rgba(232,184,75,0.3);
+  }
+
+  .tog-thumb {
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: rgba(180,180,200,0.5);
+    transition: transform 0.25s, background 0.25s;
+  }
+  .toggle-row.active .tog-thumb {
+    transform: translateX(16px);
+    background: var(--gold);
+    box-shadow: 0 0 6px var(--gold-glow);
+  }
+
+  /* ===== BOTTOM RIGHT: learn accordions ===== */
+  #bottom-right {
+    position: fixed;
+    right: 20px;
+    bottom: 24px;
+    z-index: 10;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #learn-header {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: rgba(200,220,255,0.58);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(200,220,255,0.12);
+    padding-bottom: 6px;
+  }
+
+  .learn-item {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: border-color 0.2s;
+  }
+  .learn-item:hover { border-color: rgba(255,255,255,0.22); }
+
+  .learn-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 11px;
+    cursor: pointer;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .learn-trigger:hover { background: rgba(255,255,255,0.1); }
+
+  .learn-trigger-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: rgba(230,240,255,0.95);
+  }
+
+  .learn-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .learn-chevron {
+    font-size: 0.62rem;
+    color: rgba(180,200,255,0.5);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .learn-item.open .learn-chevron { transform: rotate(180deg); }
+
+  .learn-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    background: rgba(0,0,0,0.3);
+  }
+  .learn-item.open .learn-body { max-height: 200px; }
+
+  .learn-body-inner {
+    padding: 8px 12px 10px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+    color: rgba(205,225,255,0.75);
+    line-height: 1.65;
+  }
+
+  /* scanlines */
   body::after {
     content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 5;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.03) 2px,
-      rgba(0,0,0,0.03) 4px
-    );
+    position: fixed; inset: 0; z-index: 5;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
     pointer-events: none;
   }
 
-  /* Corner decorations */
-  .corner {
-    position: fixed;
-    z-index: 10;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
-    opacity: 0.3;
-  }
-  .corner.tl { top: 12px; left: 12px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
-  .corner.tr { top: 12px; right: 12px; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); }
-  .corner.bl { bottom: 12px; left: 12px; border-bottom: 1px solid var(--gold); border-left: 1px solid var(--gold); }
-  .corner.br { bottom: 12px; right: 12px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+  /* corner accents */
+  .corner { position: fixed; z-index: 10; width: 40px; height: 40px; pointer-events: none; opacity: 0.28; }
+  .corner.tl { top:12px; left:12px; border-top:1px solid var(--gold); border-left:1px solid var(--gold); }
+  .corner.tr { top:12px; right:12px; border-top:1px solid var(--gold); border-right:1px solid var(--gold); }
+  .corner.bl { bottom:12px; left:12px; border-bottom:1px solid var(--gold); border-left:1px solid var(--gold); }
+  .corner.br { bottom:12px; right:12px; border-bottom:1px solid var(--gold); border-right:1px solid var(--gold); }
 </style>
 </head>
 <body>
@@ -335,53 +416,147 @@
   </div>
 </div>
 
+<!-- ===== EQUATIONS ===== -->
 <div id="equations">
-  <div class="eq active" id="eq0">π: Y¹⁴ → X⁴</div>
-  <div class="eq" id="eq1">dim(Y) = dim(X) + dim(GL(TX))</div>
-  <div class="eq" id="eq2">4 + 10 = 14</div>
-  <div class="eq" id="eq3">ω ∈ Ω¹(ad P) — gauge potential</div>
-  <div class="eq" id="eq4">G = SO(7,7) or Spin(7,7)</div>
-  <div class="eq" id="eq5">∇ = d + [A, ·] — Levi-Civita</div>
+  <div class="eq-intro">
+    <strong>The Geometry of Everything</strong>
+    GU proposes that all of physics — every force, every particle — emerges from the geometry of one 14-dimensional space called the Observerse.
+  </div>
+
+  <div class="eq active" id="eq0">
+    <div class="eq-name">The projection map</div>
+    <div class="eq-formula">π: Y¹⁴ → X⁴</div>
+  </div>
+  <div class="eq" id="eq1">
+    <div class="eq-name">Dimension count</div>
+    <div class="eq-formula">dim(Y) = dim(X) + dim(GL(TX))</div>
+  </div>
+  <div class="eq" id="eq2">
+    <div class="eq-name">Spacetime + fiber = observerse</div>
+    <div class="eq-formula">4 + 10 = 14</div>
+  </div>
+  <div class="eq" id="eq3">
+    <div class="eq-name">Gauge potential</div>
+    <div class="eq-formula">ω ∈ Ω¹(ad P)</div>
+  </div>
+  <div class="eq" id="eq4">
+    <div class="eq-name">The symmetry group</div>
+    <div class="eq-formula">G = SO(7,7) or Spin(7,7)</div>
+  </div>
+  <div class="eq" id="eq5">
+    <div class="eq-name">Connection / Levi-Civita</div>
+    <div class="eq-formula">∇ = d + [A, ·]</div>
+  </div>
+
+  <div class="eq-conclusion">
+    If Geometric Unity is right, every force in nature is a shadow of one shape — the Observerse.
+  </div>
 </div>
 
+<!-- ===== CONTROLS — toggle switches ===== -->
 <div id="controls">
-  <button class="ctrl-btn active" id="btn-orbit" onclick="setMode('orbit')">[ ORBIT ]</button>
-  <button class="ctrl-btn" id="btn-fibers" onclick="toggleFibers()">[ FIBERS ]</button>
-  <button class="ctrl-btn" id="btn-gauge" onclick="toggleGauge()">[ GAUGE FIELD ]</button>
-  <button class="ctrl-btn" id="btn-spinor" onclick="toggleSpinors()">[ SPINORS ]</button>
-  <button class="ctrl-btn" id="btn-slow" onclick="toggleSpeed()">[ SLOW ]</button>
+  <div id="controls-header">Toggle layers on or off<br>to explore each component</div>
+
+  <div class="toggle-row active" id="btn-fibers" onclick="toggleFibers()">
+    <div class="toggle-pill">
+      <div class="toggle-pill-dot" style="background:#ff6b9d;box-shadow:0 0 6px #ff6b9d"></div>
+      FIBER BUNDLE
+    </div>
+    <div class="tog-switch"><div class="tog-thumb"></div></div>
+  </div>
+
+  <div class="toggle-row active" id="btn-gauge" onclick="toggleGauge()">
+    <div class="toggle-pill">
+      <div class="toggle-pill-dot" style="background:#a855f7;box-shadow:0 0 6px #a855f7"></div>
+      GAUGE FIELD
+    </div>
+    <div class="tog-switch"><div class="tog-thumb"></div></div>
+  </div>
+
+  <div class="toggle-row active" id="btn-spinor" onclick="toggleSpinors()">
+    <div class="toggle-pill">
+      <div class="toggle-pill-dot" style="background:#4dffa0;box-shadow:0 0 6px #4dffa0"></div>
+      SPINOR FIELD
+    </div>
+    <div class="tog-switch"><div class="tog-thumb"></div></div>
+  </div>
+
+  <div class="toggle-row active" id="btn-spacetime" onclick="toggleSpacetime()">
+    <div class="toggle-pill">
+      <div class="toggle-pill-dot" style="background:#00e5ff;box-shadow:0 0 6px #00e5ff"></div>
+      4D SPACETIME
+    </div>
+    <div class="tog-switch"><div class="tog-thumb"></div></div>
+  </div>
 </div>
 
-<div id="legend">
-  <div class="leg-item"><div class="leg-dot" style="background:#00e5ff;box-shadow:0 0 6px #00e5ff"></div><span>4D SPACETIME</span></div>
-  <div class="leg-item"><div class="leg-dot" style="background:#c9a84c;box-shadow:0 0 6px #c9a84c"></div><span>OBSERVERSE Y¹⁴</span></div>
-  <div class="leg-item"><div class="leg-dot" style="background:#ff6b9d;box-shadow:0 0 6px #ff6b9d"></div><span>FIBER π⁻¹(x)</span></div>
-  <div class="leg-item"><div class="leg-dot" style="background:#7b2fff;box-shadow:0 0 6px #7b2fff"></div><span>GAUGE FIELD</span></div>
-  <div class="leg-item"><div class="leg-dot" style="background:#4dffa0;box-shadow:0 0 6px #4dffa0"></div><span>SPINOR FIELD</span></div>
-</div>
+<!-- ===== BOTTOM RIGHT: learn accordions ===== -->
+<div id="bottom-right">
+  <div id="learn-header">Tap to learn more ▾</div>
 
-<div id="fiber-badge">10-DIMENSIONAL FIBER</div>
+  <div class="learn-item" id="learn-obs">
+    <div class="learn-trigger" onclick="toggleLearn('learn-obs')">
+      <div class="learn-trigger-left">
+        <div class="learn-dot" style="background:#e8b84b;box-shadow:0 0 5px #e8b84b"></div>
+        The Observerse
+      </div>
+      <span class="learn-chevron">▾</span>
+    </div>
+    <div class="learn-body"><div class="learn-body-inner">
+      The Observerse (Y¹⁴) is the central idea of GU. It's a 14-dimensional space built on top of our familiar 4D spacetime. The extra 10 dimensions aren't random — they encode all possible ways spacetime can curve, which is exactly the information needed to describe gravity and all other forces.
+    </div></div>
+  </div>
 
-<div id="info">
-  <div class="dim-card blue">
-    <div class="label">BASE MANIFOLD</div>
-    <div class="value">X⁴</div>
-    <div class="desc">4D Lorentzian spacetime<br>observable universe</div>
+  <div class="learn-item" id="learn-fiber">
+    <div class="learn-trigger" onclick="toggleLearn('learn-fiber')">
+      <div class="learn-trigger-left">
+        <div class="learn-dot" style="background:#ff6b9d;box-shadow:0 0 5px #ff6b9d"></div>
+        Fiber Bundle
+      </div>
+      <span class="learn-chevron">▾</span>
+    </div>
+    <div class="learn-body"><div class="learn-body-inner">
+      At every point in spacetime (X⁴), the Observerse attaches a 10-dimensional "fiber" — a space of all possible metric shapes. Together they form a fiber bundle: the total space Y¹⁴ projected down to X⁴ by the map π. The fibers you see here represent these extra dimensions hanging off each point.
+    </div></div>
   </div>
-  <div class="dim-card gold">
-    <div class="label">OBSERVERSE</div>
-    <div class="value">Y¹⁴</div>
-    <div class="desc">Bundle of metrics over X⁴<br>total space of GU</div>
+
+  <div class="learn-item" id="learn-gauge">
+    <div class="learn-trigger" onclick="toggleLearn('learn-gauge')">
+      <div class="learn-trigger-left">
+        <div class="learn-dot" style="background:#a855f7;box-shadow:0 0 5px #a855f7"></div>
+        Gauge Field
+      </div>
+      <span class="learn-chevron">▾</span>
+    </div>
+    <div class="learn-body"><div class="learn-body-inner">
+      Gauge fields describe how forces act across space. In GU, all four forces (gravity, electromagnetism, strong, weak) are unified into one gauge connection on the Observerse. The symmetry group SO(7,7) is large enough to contain all known force symmetries simultaneously.
+    </div></div>
   </div>
-  <div class="dim-card pink">
-    <div class="label">FIBER DIM.</div>
-    <div class="value">F¹⁰</div>
-    <div class="desc">Sym₂(T*X) fiber<br>metric degrees of freedom</div>
+
+  <div class="learn-item" id="learn-spinor">
+    <div class="learn-trigger" onclick="toggleLearn('learn-spinor')">
+      <div class="learn-trigger-left">
+        <div class="learn-dot" style="background:#4dffa0;box-shadow:0 0 5px #4dffa0"></div>
+        Spinor Field
+      </div>
+      <span class="learn-chevron">▾</span>
+    </div>
+    <div class="learn-body"><div class="learn-body-inner">
+      Spinors are the mathematical objects that describe fermions — electrons, quarks, neutrinos. In GU, spinors arise naturally from the geometry of the Observerse rather than being added by hand. Each green particle represents a fermion emerging from the structure of spacetime itself.
+    </div></div>
   </div>
-  <div class="dim-card purple">
-    <div class="label">GAUGE GROUP</div>
-    <div class="value">G₁₄</div>
-    <div class="desc">SO(7,7) unified symmetry<br>all forces unified</div>
+
+  <div class="learn-item" id="learn-spacetime">
+    <div class="learn-trigger" onclick="toggleLearn('learn-spacetime')">
+      <div class="learn-trigger-left">
+        <div class="learn-dot" style="background:#00e5ff;box-shadow:0 0 5px #00e5ff"></div>
+        4D Spacetime
+      </div>
+      <span class="learn-chevron">▾</span>
+    </div>
+    <div class="learn-body"><div class="learn-body-inner">
+      The glowing grid is our familiar 4D spacetime (X⁴) — 3 dimensions of space plus 1 of time. The waves show spacetime curvature, which we experience as gravity. In GU, this is just the "base" of a much larger structure — the Observerse is built on top of it.
+    </div></div>
   </div>
 </div>
 
@@ -571,8 +746,6 @@ violetLight.position.set(0, -2, 3);
 scene.add(violetLight);
 
 // ===================== CONTROLS =====================
-function setMode(m) {}
-
 function toggleFibers() {
   showFibers = !showFibers;
   fiberGroup.visible = showFibers;
@@ -588,9 +761,11 @@ function toggleSpinors() {
   spinorGroup.visible = showSpinors;
   document.getElementById('btn-spinor').classList.toggle('active', showSpinors);
 }
-function toggleSpeed() {
-  slowMode = !slowMode;
-  document.getElementById('btn-slow').classList.toggle('active', slowMode);
+function toggleSpacetime() {
+  const visible = !grid.visible;
+  grid.visible  = visible;
+  wave.visible  = visible;
+  document.getElementById('btn-spacetime').classList.toggle('active', visible);
 }
 
 // Mouse drag to orbit
@@ -627,7 +802,7 @@ setInterval(() => {
   eqs[activeEq].classList.remove('active');
   activeEq = (activeEq + 1) % eqs.length;
   eqs[activeEq].classList.add('active');
-}, 2200);
+}, 2400);
 
 // ===================== WAVE ANIMATION =====================
 function updateWave(t) {
