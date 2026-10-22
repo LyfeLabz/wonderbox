@@ -244,62 +244,6 @@ nav {
   margin-top: 6px;
 }
 
-.hero-question-box {
-  margin: 32px auto;
-  max-width: 680px;
-  background: rgba(10,18,32,0.7);
-  border: 1px solid rgba(0,245,212,0.2);
-  border-radius: 12px;
-  padding: 18px 28px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  animation: fadeUp 0.8s 0.35s both;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 60px rgba(0,245,212,0.05), inset 0 1px 0 rgba(255,255,255,0.04);
-}
-
-.qbox-icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-5px); }
-}
-
-.qbox-text {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(0.95rem, 2vw, 1.25rem);
-  font-weight: 600;
-  color: var(--text);
-  text-align: left;
-  min-height: 2em;
-}
-
-.qbox-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  background: var(--teal);
-  margin-left: 2px;
-  vertical-align: middle;
-  animation: blink 0.9s step-start infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
-
-.hero-sub {
-  max-width: 560px;
-  font-size: 1.05rem;
-  font-weight: 400;
-  color: var(--muted);
-  line-height: 1.7;
-  margin: 0 auto 44px;
-  animation: fadeUp 0.8s 0.45s both;
-}
-
 .hero-actions {
   display: flex;
   gap: 16px;
@@ -1271,7 +1215,6 @@ footer {
   <ul class="footer-links">
     <li><a href="https://lyfelabz.com">← Main Site</a></li>
     <li><a href="#explorations">Explorations</a></li>
-    <li><a href="#questions">Questions</a></li>
     <li><a href="https://lyfelabz.com/about.html">About LyfeLabz</a></li>
     <li><a href="https://lyfelabz.com/privacy.html">Privacy</a></li>
   </ul>
@@ -1351,50 +1294,6 @@ window.addEventListener('keydown', e => {
     window.location.href = 'https://lyfelabz.com';
   }
 });
-
-/* ===== TYPEWRITER ===== */
-const questions = [
-  "If the universe started from nothing... what was the nothing?",
-  "Why does matter exist instead of just energy?",
-  "Is there a theory that unifies all four forces?",
-  "What gives particles their mass?",
-  "Why are there exactly three generations of particles?",
-  "What would a 14-dimensional space actually feel like?",
-  "Could there be more universes like ours?",
-  "What is dark matter actually made of?",
-];
-
-const icons = ['🌌','⚛️','🔭','🧲','🧬','🌊','🔬','✨'];
-let qi = 0, ci = 0, deleting = false, delay = 60;
-const qEl = document.getElementById('typed-question');
-const qIcon = document.querySelector('.qbox-icon');
-
-function typeLoop() {
-  const q = questions[qi];
-  if (!deleting) {
-    ci++;
-    qEl.innerHTML = q.slice(0, ci) + '<span class="qbox-cursor"></span>';
-    if (ci === q.length) {
-      deleting = true;
-      delay = 2200;
-    } else {
-      delay = 38 + Math.random() * 30;
-    }
-  } else {
-    ci = Math.max(0, ci - 2);
-    qEl.innerHTML = q.slice(0, ci) + '<span class="qbox-cursor"></span>';
-    if (ci === 0) {
-      deleting = false;
-      qi = (qi + 1) % questions.length;
-      qIcon.textContent = icons[qi % icons.length];
-      delay = 300;
-    } else {
-      delay = 22;
-    }
-  }
-  setTimeout(typeLoop, delay);
-}
-typeLoop();
 
 /* ===== SCROLL REVEALS ===== */
 const observer = new IntersectionObserver(entries => {
