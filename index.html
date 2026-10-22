@@ -617,6 +617,19 @@ section {
   animation: thumbPulse 4s ease-in-out infinite;
 }
 
+/* Tesseract thumb */
+.thumb-tess {
+  background: radial-gradient(ellipse at 50% 50%, rgba(232,184,75,0.2) 0%, rgba(176,64,255,0.14) 50%, rgba(2,4,8,1) 100%);
+}
+
+.thumb-tess::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect x='140' y='30' width='140' height='140' fill='%23f0d000' fill-opacity='0.05' stroke='%23f0d000' stroke-opacity='0.5' stroke-width='1.2'/%3E%3Crect x='185' y='75' width='50' height='50' fill='%23ff3d58' fill-opacity='0.1' stroke='%23ff3d58' stroke-opacity='0.75' stroke-width='1.2'/%3E%3Cline x1='140' y1='30' x2='185' y2='75' stroke='%2300c8ff' stroke-opacity='0.55' stroke-width='1'/%3E%3Cline x1='280' y1='30' x2='235' y2='75' stroke='%2322e870' stroke-opacity='0.55' stroke-width='1'/%3E%3Cline x1='280' y1='170' x2='235' y2='125' stroke='%2300c8ff' stroke-opacity='0.55' stroke-width='1'/%3E%3Cline x1='140' y1='170' x2='185' y2='125' stroke='%2322e870' stroke-opacity='0.55' stroke-width='1'/%3E%3Cg fill='%23e8b84b' fill-opacity='0.85'%3E%3Ccircle cx='140' cy='30' r='2.5'/%3E%3Ccircle cx='280' cy='30' r='2.5'/%3E%3Ccircle cx='280' cy='170' r='2.5'/%3E%3Ccircle cx='140' cy='170' r='2.5'/%3E%3Ccircle cx='185' cy='75' r='2'/%3E%3Ccircle cx='235' cy='75' r='2'/%3E%3Ccircle cx='235' cy='125' r='2'/%3E%3Ccircle cx='185' cy='125' r='2'/%3E%3C/g%3E%3C/svg%3E") center/cover;
+  animation: thumbPulse 4.5s ease-in-out infinite;
+}
+
 /* Standard Model thumb */
 .thumb-sm {
   background: radial-gradient(ellipse at 60% 40%, rgba(0,200,255,0.2) 0%, rgba(168,255,62,0.1) 50%, rgba(4,8,15,1) 100%);
@@ -1219,6 +1232,27 @@ footer {
             <span class="meta-chip chip-amber">Torus Knot Manifold</span>
             <span class="meta-chip chip-dim">Gauge Fields</span>
             <span class="meta-chip chip-teal">Live 3D</span>
+          </div>
+        </div>
+        <div class="exp-card-arrow">↗</div>
+      </a>
+
+      <!-- The Tesseract -->
+      <a href="tesseract.html" class="exp-card gold">
+        <div class="exp-card-thumb thumb-tess">
+          <div class="exp-card-thumb-label">4D INTERACTIVE</div>
+        </div>
+        <div class="exp-card-body">
+          <div class="exp-card-tag">GEOMETRY · THE FOURTH DIMENSION</div>
+          <h3 class="exp-card-title">The Tesseract</h3>
+          <p class="exp-card-desc">
+            Slide a point to make a line, a line to make a square, a square to make a cube. Now slide the cube in a direction you can't even point to. Spin a true 4D hypercube and watch its shadow fold through itself.
+          </p>
+          <div class="exp-card-meta">
+            <span class="meta-chip chip-dim">4 Spatial Dimensions</span>
+            <span class="meta-chip chip-amber">16 Corners · 8 Cubes</span>
+            <span class="meta-chip chip-dim">6 Rotation Planes</span>
+            <span class="meta-chip chip-teal">Live 4D</span>
           </div>
         </div>
         <div class="exp-card-arrow">↗</div>
